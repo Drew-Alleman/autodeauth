@@ -27,5 +27,5 @@ WantedBy=multi-user.target
 ... 
 EOL
 echo autodeauth installed
-echo "type sudo autodeauth -h to see options or systemctl start autodeauth"
+echo "use sudo autodeauth or systemctl start autodeauth"
 echo "to edit service setting please edit: service file: /etc/systemd/system/autodeauth.service"  
