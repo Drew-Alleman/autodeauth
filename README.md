@@ -1,5 +1,6 @@
 # autodeauth
 A tool built to automatically deauth local networks
+* Tested on Raspberry Pi OS and Kali Linux
 
 # Setup
 ```
