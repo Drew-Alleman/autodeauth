@@ -18,7 +18,7 @@ raspberry_pi = True
 
 try:
     import RPi.GPIO as GPIO  # Used for GPI pin control
-except (RuntimeError):
+except (RuntimeError, ImportError):
     raspberry_pi = False
 
 from scapy.all import (
