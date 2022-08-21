@@ -435,7 +435,7 @@ if __name__ == "__main__":
     if args.led:
         try:
             GPIO.setmode(GPIO.BOARD)
-        except NameError:
+        except (NameError, ImportError):
             print(
                 "Unable to setup LED indicator, it doesnt look like you are running a raspberry pi"
             )
