@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 
 from email import message
+from multiprocessing import connection
 import os
 from typing import Type
 from xml.dom.minidom import Attr
@@ -186,7 +187,7 @@ class InterfaceManager:
         if not self.did_os_command_succeed(f"sudo ifconfig {self.interface} down"):
             self.logger.error(f"Failed to set {self.interface} down")
             return False
-        time.sleep(1)
+        time.sleep(2)
         return True
 
     def set_up(self) -> bool:
@@ -198,7 +199,7 @@ class InterfaceManager:
         if not self.did_os_command_succeed(f"sudo ifconfig {self.interface} up"):
             self.logger.error(f"Failed to set {self.interface} up")
             return False
-        time.sleep(1)
+        time.sleep(2)
         return True
 
     def change_mac_address(self):
@@ -355,30 +356,17 @@ class AutoDeauth:
     def get_filtered_networks(self) -> list:
         try:
             networks = self.interface.get_local_networks()
+            filtered_networks = []
             if not networks:
                 return []
             for network in networks:
                 ssid = format_string(network.ssid)
-                if (
-                    not ssid
-                    or self.ssid_blacklist
-                    and (
-                        ssid in self.ssid_blacklist
-                        or network.address in self.ssid_blacklist
-                    )
-                ):
+                if not ssid or self.ssid_blacklist and (network.address in self.ssid_blacklist or ssid in self.ssid_blacklist):
                     continue
-                elif (
-                    not self.ssid_whitelist
-                    or self.ssid_whitelist
-                    and (
-                        ssid in self.ssid_whitelist
-                        or network.address in self.ssid_whitelist
-                    )
-                ):
+                elif not self.ssid_whitelist or self.ssid_whitelist and ssid in self.ssid_whitelist or self.ssid_whitelist and network.address in self.ssid_whitelist:
                     self.save_information(network)
-
-            return networks
+                    filtered_networks.append(network)
+            return filtered_networks
         except (KeyboardInterrupt):
             self.stop()
 
@@ -418,6 +406,9 @@ class AutoDeauth:
                     self.is_done = True
                     if self.deauth_led and self.is_done and self.blink_thread:
                         self.blink_thread.join()
+            except OSError as e: 
+                self.logger.warning(f"{e} Reducing packet count to {1000}")
+                self.count = 1000
             except (KeyboardInterrupt):
                 self.stop()
 
@@ -451,13 +442,13 @@ if __name__ == "__main__":
     parser.add_argument(
         "--blacklist",
         "-b",
-        help="List of networks ssids to avoid (Comma seperated)",
+        help="List of networks ssids/mac addresses to avoid (Comma seperated)",
         type=lambda arg: arg.split(","),
     )
     parser.add_argument(
         "--whitelist",
         "-w",
-        help="List of networks ssids to target (Comma seperated)",
+        help="List of networks ssids/mac addresses to target (Comma seperated)",
         type=lambda arg: arg.split(","),
     )
     parser.add_argument("--led", "-l", help="Led pin number for led display", type=int)
@@ -470,7 +461,7 @@ if __name__ == "__main__":
     parser.add_argument(
         "--random",
         "-r",
-        help="Randomize your MAC address deauthing each network",
+        help="Randomize your MAC address before deauthing each network",
         default=False,
         action="store_true",
     )
@@ -506,10 +497,9 @@ if __name__ == "__main__":
             # from RPi._GPIO import *
             # RuntimeError: This module can only be run on a Raspberry Pi!
 
-            print(
+            exit(
                 "Unable to setup LED indicator, t doesnt look like you are running using raspberry pi"
             )
-            exit()
     a = AutoDeauth(**data)
     try:
         a.start()
