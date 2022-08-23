@@ -96,7 +96,6 @@ $ cat /var/log/autodeauth/log
 
 # Edit Service Config
 
-## Edit Config
 To change the settings of the autodeauth service edit the file /etc/systemd/system/autodeauth.service <br>
 Lets say you wanted the following config to be setup as a service
 ```
