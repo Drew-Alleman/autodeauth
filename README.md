@@ -27,7 +27,7 @@ $ sudo autodeauth -h
       / _ \ || |  _/ _ \ |) / -_) _` | || |  _| ' \ 
      /_/ \_\_,_|\__\___/___/\___\__,_|\_,_|\__|_||_|
 
-usage: autodeauth [-h] --interface INTERFACE [--blacklist BLACKLIST] [--whitelist WHITELIST] [--led LED] [--time TIME] [--count COUNT] [--verbose VERBOSE]
+usage: autodeauth [-h] --interface INTERFACE [--blacklist BLACKLIST] [--whitelist WHITELIST] [--led LED] [--time TIME] [--random] [--count COUNT] [--verbose VERBOSE]
 
 Auto Deauth Tool
 
@@ -36,22 +36,25 @@ options:
   --interface INTERFACE, -i INTERFACE
                         Interface to fetch WiFi networks and send deauth packets (must support packet injection)
   --blacklist BLACKLIST, -b BLACKLIST
-                        List of networks ssids to avoid (Comma seperated)
+                        List of networks ssids/mac addresses to avoid (Comma seperated)
   --whitelist WHITELIST, -w WHITELIST
-                        List of networks ssids to target (Comma seperated)
+                        List of networks ssids/mac addresses to target (Comma seperated)
   --led LED, -l LED     Led pin number for led display
   --time TIME, -t TIME  Time (in s) between two deauth packets (default 0)
+  --random, -r          Randomize your MAC address each deauth session
   --count COUNT, -c COUNT
                         Number of packets to send (default 5000)
   --verbose VERBOSE, -v VERBOSE
-                        Scapy verbose setting (default: 0)
+                        Scapy verbosity setting (default: 0)
+                                                                  
 ```
 
 # Usage
 After running the setup you are able to run the script by using autodeauth from any directory
 ## Command line
+Networks with spaces can be represented using their mac addresses
 ```
-$ sudo autodeauth -i wlan0 --blacklist FreeWiFi,myWifi -c 10000
+$ sudo autodeauth -i wlan0 --blacklist FreeWiFi,E1:DB:12:2F:C1:57 -c 10000
 ```
 ## Service
 ```
