@@ -27,7 +27,7 @@ $ sudo autodeauth -h
       / _ \ || |  _/ _ \ |) / -_) _` | || |  _| ' \ 
      /_/ \_\_,_|\__\___/___/\___\__,_|\_,_|\__|_||_|
 
-usage: autodeauth [-h] --interface INTERFACE [--blacklist BLACKLIST] [--whitelist WHITELIST] [--led LED] [--time TIME] [--random] [--count COUNT] [--verbose VERBOSE]
+usage: autodeauth [-h] --interface INTERFACE [--blacklist BLACKLIST] [--whitelist WHITELIST] [--led LED] [--time TIME] [--random] [--ignore] [--count COUNT] [--verbose VERBOSE]
 
 Auto Deauth Tool
 
@@ -41,12 +41,13 @@ options:
                         List of networks ssids/mac addresses to target (Comma seperated)
   --led LED, -l LED     Led pin number for led display
   --time TIME, -t TIME  Time (in s) between two deauth packets (default 0)
-  --random, -r          Randomize your MAC address each deauth session
+  --random, -r          Randomize your MAC address deauthing each network
+  --ignore              Ignore errors encountered when randomizing your MAC address
   --count COUNT, -c COUNT
                         Number of packets to send (default 5000)
   --verbose VERBOSE, -v VERBOSE
                         Scapy verbosity setting (default: 0)
-                                                                  
+                                                    
 ```
 
 # Usage
