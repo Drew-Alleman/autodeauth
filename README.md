@@ -34,7 +34,7 @@ Auto Deauth Tool
 options:
   -h, --help            show this help message and exit
   --interface INTERFACE, -i INTERFACE
-                        Interface to snoop WiFi traffic and send deauth packets (must support packet injection)
+                        Interface to fetch WiFi networks and send deauth packets (must support packet injection)
   --blacklist BLACKLIST, -b BLACKLIST
                         List of networks ssids to avoid (Comma seperated)
   --whitelist WHITELIST, -w WHITELIST
