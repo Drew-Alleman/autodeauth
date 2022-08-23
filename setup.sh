@@ -7,7 +7,7 @@ fi
 mkdir /var/log/autodeauth
 mkdir /var/log/autodeauth/loot
 
-apt install python3 python3-pip wireless-tools
+apt install python3 python3-pip wireless-tools macchanger
 sudo pip3 install wifi scapy rpi.gpio
 
 chmod +x autodeauth.py
@@ -27,5 +27,5 @@ WantedBy=multi-user.target
 ... 
 EOL
 echo autodeauth installed
-echo "use sudo autodeauth or systemctl start autodeauth"
-echo "to edit service setting please edit: service file: /etc/systemd/system/autodeauth.service"  
+echo "type sudo autodeauth -h to see options or systemctl start autodeauth"
+echo "to edit service setting please edit: service file: /etc/systemd/system/autodeauth.service"
