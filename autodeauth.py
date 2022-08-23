@@ -394,7 +394,7 @@ if __name__ == "__main__":
     parser.add_argument(
         "--interface",
         "-i",
-        help="Interface to snoop WiFi traffic and send deauth packets (must support packet injection) ",
+        help="Interface to fetch WiFi networks and send deauth packets (must support packet injection) ",
         required=True,
     )
     parser.add_argument(
