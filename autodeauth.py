@@ -3,8 +3,6 @@
 from email import message
 from multiprocessing import connection
 import os
-from typing import Type
-from xml.dom.minidom import Attr
 
 if os.geteuid() != 0:
     exit(
