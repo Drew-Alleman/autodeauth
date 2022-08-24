@@ -1,6 +1,5 @@
 #!/usr/bin/python3
 
-from email import message
 from multiprocessing import connection
 import os
 
