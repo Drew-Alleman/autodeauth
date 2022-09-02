@@ -6,16 +6,14 @@ A tool built to automatically deauth local networks
 ```
 $ chmod +x setup.sh
 $ sudo ./setup.sh
-Reading package lists... Done
-Building dependency tree... Done
-Reading state information... Done
-0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
-Please enter your WiFi interface name e.g: wlan0 ->  wlan1
-autodeauth installed
 
-use sudo autodeauth or systemctl start autodeauth 
+[*] This can be changed by editing /etc/systemd/system/autodeauth.service
+[?] Enter your WiFi interface to use with the autodeauth service: wlan0 
 
-to edit service setting please edit: service file: /etc/systemd/system/autodeauth.service
+
+[*] Installed!, you can use sudo autodeauth -h to see available options.
+[*] Use sudo systemctl start autodeauth to start the service
+[*] Check the README for more infomation about configuring the service
 ```
 
 
