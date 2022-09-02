@@ -4,16 +4,16 @@ if [[ $EUID -ne 0 ]]; then
    exit 1
 fi
 
-mkdir /var/log/autodeauth
-mkdir /var/log/autodeauth/loot
+mkdir -p /var/log/autodeauth/loot/
 
-apt install python3 python3-pip wireless-tools macchanger
-sudo pip3 install wifi scapy rpi.gpio
+output=`pip3 install wifi scapy rpi.gpio 2>&1` || echo $output
+output=`apt install python3 python3-pip wireless-tools macchanger 2>&1` || echo $output
 
 chmod +x autodeauth.py
-cp autodeauth.py /usr/local/bin/autodeauth
 
-read -p "Please enter your WiFi interface name e.g: wlan0 ->  " interface
+cp autodeauth.py /usr/local/bin/autodeauth
+echo "[*] This can be changed by editing /etc/systemd/system/autodeauth.service"
+read -p "[?] Enter your WiFi interface to use with the autodeauth service: " interface
 
 cat >/etc/systemd/system/autodeauth.service <<EOL
 [Unit]
@@ -26,6 +26,6 @@ ExecStart=/usr/bin/python3 /usr/local/bin/autodeauth -i $interface
 WantedBy=multi-user.target
 ... 
 EOL
-echo autodeauth installed
-echo "type sudo autodeauth -h to see options or systemctl start autodeauth"
-echo "to edit service setting please edit: service file: /etc/systemd/system/autodeauth.service"
+echo -e "\n\n[*] Installed!, you can use sudo autodeauth -h to see available options."
+echo "[*] Use sudo systemctl start autodeauth to start the service"
+echo "[*] Check the README for more infomation about configuring the service"
