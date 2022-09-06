@@ -4,7 +4,8 @@ A tool built to automatically deauth local networks
 
 # To-Do
 * EAPOL packet Capture
-* Auto join open networks and grab public ip
+* Get router information 
+* Auto join open networks and grab public ips
 
 # Setup
 ```
