@@ -2,6 +2,10 @@
 A tool built to automatically deauth local networks
 * Tested on Raspberry Pi OS and Kali Linux
 
+# To-Do
+* EAPOL packet Capture
+* Auto join open networks and grab public ip
+
 # Setup
 ```
 $ chmod +x setup.sh
