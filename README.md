@@ -1,5 +1,5 @@
 # autodeauth
-A tool built to automatically deauth local networks
+A tool/service built to automatically deauth local networks and enumerates public networks 
 * Tested on Raspberry Pi OS and Kali Linux
 
 # To-Do
@@ -14,11 +14,8 @@ $ sudo ./setup.sh
 
 [*] This can be changed by editing /etc/systemd/system/autodeauth.service
 [?] Enter your WiFi interface to use with the autodeauth service: wlan0 
-
-
 [*] Installed!, you can use sudo autodeauth -h to see available options.
-[*] Use sudo systemctl start autodeauth to start the service
-[*] Check the README for more infomation about configuring the service
+[*] Check the README for more infomation about configuring/starting the service
 ```
 
 
