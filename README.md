@@ -1,11 +1,6 @@
 # autodeauth
-A tool/service built to automatically deauth local networks and enumerates public networks 
+A tool/service built to automatically deauth local networks
 * Tested on Raspberry Pi OS and Kali Linux
-
-# To-Do
-* EAPOL packet Capture
-* Get router information 
-* Auto join open networks and grab public ips
 
 # Setup
 ```
