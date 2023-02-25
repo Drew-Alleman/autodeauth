@@ -495,7 +495,7 @@ if __name__ == "__main__":
             # RuntimeError: This module can only be run on a Raspberry Pi!
 
             exit(
-                "Unable to setup LED indicator, t doesnt look like you are running using raspberry pi"
+                "Unable to setup LED indicator, it doesnt look like you are running using raspberry pi"
             )
     a = AutoDeauth(**data)
     try:
