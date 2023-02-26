@@ -15,14 +15,11 @@ import wifi  # Used to scan for local networks
 
 try:
     import RPi.GPIO as GPIO  # Used for GPI pin control
-except (RuntimeError):
+except ImportError:
     pass
-from scapy.all import (
-    RadioTap,  # Adds additional metadata to an 802.11 frame
-    Dot11,  # For creating 802.11 frame
-    Dot11Deauth,  # For creating deauth frame
-    sendp,  # for sending packets
-)
+
+from scapy.layers.dot11 import RadioTap, Dot11, Dot11Deauth
+from scapy.sendrecv import sendp
 
 LOG_DIR = "/var/log/autodeauth/"
 
