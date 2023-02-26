@@ -1,0 +1,4 @@
+argparse==1.4.0
+scapy==2.4.5
+wifi==0.3.8
+RPi.GPIO==0.7.0
