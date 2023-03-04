@@ -15,7 +15,7 @@ import wifi  # Used to scan for local networks
 
 try:
     import RPi.GPIO as GPIO  # Used for GPI pin control
-except ImportError:
+except (ImportError, RuntimeError):
     pass
 
 from scapy.layers.dot11 import RadioTap, Dot11, Dot11Deauth
